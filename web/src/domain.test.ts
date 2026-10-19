@@ -26,8 +26,8 @@ describe("date and search helpers", () => {
     const base = { destination: "all", checkIn: "2026-10-01", checkOut: "2026-10-04", guests: 2 };
     expect(validateSearch({ ...base, checkIn: "" })).toMatch(/Choose/);
     expect(validateSearch(base, "2026-10-02")).toMatch(/today or later/);
-    expect(validateSearch({ ...base, checkOut: base.checkIn })).toMatch(/after check-in/);
-    expect(validateSearch({ ...base, guests: 5 })).toMatch(/one and four/);
+    expect(validateSearch({ ...base, checkOut: base.checkIn }, "2026-09-01")).toMatch(/after check-in/);
+    expect(validateSearch({ ...base, guests: 5 }, "2026-09-01")).toMatch(/one and four/);
     expect(validateSearch(base, "2026-09-01")).toBeNull();
   });
 
